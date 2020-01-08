@@ -31,6 +31,7 @@ export default class App extends Component {
     //storing the call in a variable to make it cleaner
     const apiSearchCall = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiInfo.key}&tags=${query}&per_page=24&format=json&nojsoncallback=1`;
     console.log('API Call: ', apiSearchCall);
+
     //initial call
     axios.get(apiSearchCall)
       .then(response => {
@@ -42,7 +43,8 @@ export default class App extends Component {
       .catch(error => {
         console.log('Error fetching and parsing data: ', error);
       });
-    //construct the calls to get the Photo Source URLs from the data we get back; https://www.flickr.com/services/api/misc.urls.html
+    //construct the calls to get the Photo Source URLs from the data we get back: https://www.flickr.com/services/api/misc.urls.html
+    //put it in a function and then call it in a .then?
   }
   
   render() {
@@ -73,12 +75,9 @@ export default class App extends Component {
 // - Search
 // - Photo Container
 
-//TODO: Get a Flickr API Key - refer to directions for project. Create special data file.
 //TODO: Fetch the Flickr Data
 //TODO: Set up routes.
-//TODO: Create Search - Search for photos with the Flickr API endpoint for searching.
 //TODO: App should display at least 3 default topic links that return a list of photos matching some criteria.
-//TODO: Use axios? or fetch api
 //TODO: Display the data. Make sure to include a key so there are no warnings.
 //TODO: No more than 24 images displaying.
 
