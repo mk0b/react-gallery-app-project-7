@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import '../css/index.css';
 import axios from 'axios';
+import apiInfo from '../config';
 
 //importing components
 import SearchBar from './SearchBar';
@@ -27,11 +28,15 @@ export default class App extends Component {
   //method to search the Flickr API from the search form in SearchBar.js
   //creating it as an arrow function to auto bind this keyword.
   search = (query) => {
+    //initial call
+    const apiSearchCall = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiInfo.key}&tags=${query}&per_page=24&format=json&nojsoncallback=1`;
 
+    //construct the calls to get the Photo Source URLs from the data we get back; https://www.flickr.com/services/api/misc.urls.html
   }
   
   render() {
     console.log(this.state.photos);
+    console.log(apiInfo.key, apiInfo.secret);
     return (
       <div className="container">
         <SearchBar />
