@@ -9,12 +9,13 @@ import SearchBar from './SearchBar';
 import CategoriesNav from './CategoriesNav';
 import Gallery from './Gallery';
 import NotFound from './NotFound';
+import { BrowserRouter, Route } from 'react-router-dom';
 //Where should I put the No results for the search?
 
 export default class App extends Component {
   
   constructor() {
-    //binding this to this class
+    //binding this keyword to this class
     super();
     //setting state to make a place for the Flickr data to go
     this.state = {
@@ -23,7 +24,7 @@ export default class App extends Component {
     }
   }
 
-  //create a component did mount here?
+  //TODO: create a component did mount here?
 
   //method to search the Flickr API from the search form in SearchBar.js
   //creating it as an arrow function to auto bind this keyword.
@@ -43,16 +44,17 @@ export default class App extends Component {
       .catch(error => {
         console.log('Error fetching and parsing data: ', error);
       });
-    //construct the calls to get the Photo Source URLs from the data we get back: https://www.flickr.com/services/api/misc.urls.html
-    //put it in a function and then call it in a .then?
   }
   
   render() {
     console.log(this.state.photos);
     return (
-      <div className="container">
-        <SearchBar onSearch={this.search}/>
-      </div>
+        <div className="container">
+          <SearchBar onSearch={this.search}/>
+          <CategoriesNav />
+          <Gallery data={this.state.photos} />
+        </div>
+
     );
   }
 
@@ -63,6 +65,7 @@ export default class App extends Component {
 //TODO: Fill out Read.me file.
 //TODO: Clean up comments
 //TODO: Remove tests.
+//TODO: Cleanup any unused assets.
 
 //TODO: Build Components - Use the mockups as a general guide to create components.
 
