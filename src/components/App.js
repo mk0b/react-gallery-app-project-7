@@ -28,18 +28,28 @@ export default class App extends Component {
   //method to search the Flickr API from the search form in SearchBar.js
   //creating it as an arrow function to auto bind this keyword.
   search = (query) => {
-    //initial call
+    //storing the call in a variable to make it cleaner
     const apiSearchCall = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiInfo.key}&tags=${query}&per_page=24&format=json&nojsoncallback=1`;
-
+    console.log('API Call: ', apiSearchCall);
+    //initial call
+    axios.get(apiSearchCall)
+      .then(response => {
+        this.setState({
+          photos: response.data.photos.photo,
+          loading: false
+        });
+      })
+      .catch(error => {
+        console.log('Error fetching and parsing data: ', error);
+      });
     //construct the calls to get the Photo Source URLs from the data we get back; https://www.flickr.com/services/api/misc.urls.html
   }
   
   render() {
     console.log(this.state.photos);
-    console.log(apiInfo.key, apiInfo.secret);
     return (
       <div className="container">
-        <SearchBar />
+        <SearchBar onSearch={this.search}/>
       </div>
     );
   }
