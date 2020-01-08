@@ -1,12 +1,22 @@
 import React from 'react';
 import '../css/index.css';
+import {
+  BrowserRouter,
+  Route,
+  Switch
+} from 'react-router-dom';
 
-function App() {
+//importing components
+import SearchBar from './SearchBar';
+
+const App = () => {
   
   return (
-    <div className="container">
-      <p> Hello React! </p>
-    </div>
+    <BrowserRouter>
+      <div className="container">
+        <SearchBar />
+      </div>
+    </BrowserRouter>
   );
 }
 
