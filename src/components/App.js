@@ -1,30 +1,51 @@
-import React from 'react';
+//stateful class component
+import React, { Component } from 'react';
 import '../css/index.css';
-import {
-  BrowserRouter,
-  Route,
-  Switch
-} from 'react-router-dom';
+import axios from 'axios';
 
 //importing components
 import SearchBar from './SearchBar';
+import CategoriesNav from './CategoriesNav';
+import Gallery from './Gallery';
+import NotFound from './NotFound';
+//Where should I put the No results for the search?
 
-const App = () => {
+export default class App extends Component {
   
-  return (
-    <BrowserRouter>
+  constructor() {
+    //binding this to this class
+    super();
+    //setting state to make a place for the Flickr data to go
+    this.state = {
+      photos: [],
+      loading: true
+    }
+  }
+
+  //create a component did mount here?
+
+  //method to search the Flickr API from the search form in SearchBar.js
+  //creating it as an arrow function to auto bind this keyword.
+  search = (query) => {
+
+  }
+  
+  render() {
+    console.log(this.state.photos);
+    return (
       <div className="container">
         <SearchBar />
       </div>
-    </BrowserRouter>
-  );
-}
+    );
+  }
 
-export default App;
+}
 
 //Putting my TODO's here
 //TODO: Test!
 //TODO: Fill out Read.me file.
+//TODO: Clean up comments
+//TODO: Remove tests.
 
 //TODO: Build Components - Use the mockups as a general guide to create components.
 
