@@ -1,9 +1,10 @@
 //stateful class component
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 
 //TODO: Use Prevstate for updating state.
 
-export default class SearchBar extends Component {
+class SearchBar extends Component {
 
     //setting state
     state = {
@@ -18,17 +19,22 @@ export default class SearchBar extends Component {
     //method for what to do on submit
     onSubmit = event => {
         event.preventDefault();
+        let searchText = this.search.value;
+        let path = `search/${searchText}`;
+        this.props.history.push(path);
         this.props.onSearch(this.state.searchContent);
         event.currentTarget.reset();
+        
     }
 
     render() {
         return (
-            <form className="search-form" onSubmit={this.onSubmit}>
+            <form className="search-form" onSubmit={this.onSubmit.bind(this)}>
                 <input type="search"
                        onChange={this.onSearchChange} 
                        name="search" 
                        placeholder="Search" 
+                       ref={ (input) => this.search =  input}
                        required />
                 <button type="submit" className="search-button">
                     <svg fill="#fff" height="24" viewBox="0 0 23 23" width="24" xmlns="http://www.w3.org/2000/svg">
@@ -40,3 +46,5 @@ export default class SearchBar extends Component {
         );
     }
 }
+
+export default withRouter (SearchBar);

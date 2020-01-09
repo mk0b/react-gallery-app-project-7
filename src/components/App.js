@@ -9,7 +9,7 @@ import SearchBar from './SearchBar';
 import CategoriesNav from './CategoriesNav';
 import Gallery from './Gallery';
 import NotFound from './NotFound';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 
 export default class App extends Component {
   
@@ -44,20 +44,28 @@ export default class App extends Component {
         console.log('Error fetching and parsing data: ', error);
       });
   }
+
+  //TODO: Make a call for the different paths in methods up here and store it in an array and pass those through as data depnding on the route that is selected.
   
+  //TODO: Set-up a route here for the custom search field that will be coming back
+  //TODO: it will go like /search/searchContent - reference the gif search project/router
+  //TODO: Reference home.js from router project and app then courses
+  //TODO: Took this out: <Gallery data={this.state.photos} />
   render() {
     console.log(this.state.photos);
     return (
       <BrowserRouter>
         <div className="container">
-          <SearchBar onSearch={this.search}/>
+          <SearchBar onSearch={this.search} />
           <CategoriesNav />
-          <Gallery data={this.state.photos} />
+          
+        <Switch>
+          <Route path="/search/:searchtext" render={ () => <Gallery data={this.state.photos} />} />
+        </Switch>
         </div>
       </BrowserRouter>
     );
   }
-
 }
 
 //Putting my TODO's here
