@@ -6,6 +6,7 @@ import NoSearchResults from './NoSearchResults';
 //construct URLs for the Photo Source URLs from the data we get back: https://www.flickr.com/services/api/misc.urls.html
 //display the URL's to the <Photo /> component or if the array is empty display no results found.
 //TODO: Remove the "this is the gallery" for testing.
+//TODO: Get props down for the title of the page for specific routes.
 
 const Gallery = (props) => {
     //store vairables
@@ -24,13 +25,10 @@ const Gallery = (props) => {
     } else {
         photos = <NoSearchResults />
     }
-
-    //put in an if statement to check for no results
-
-    //return UL
+    //TODO: Make a ternary if statement if a title prop exists add it if not leave out the h1
     return (
         <div className="photo-container">
-            <p>This is the gallery.</p>
+            <h1>Placeholder Gifs</h1>
             <ul>
                 {photos}
             </ul>
