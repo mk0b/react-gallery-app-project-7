@@ -1,6 +1,8 @@
 //stateful class component
 import React, { Component } from 'react';
 
+//TODO: Use Prevstate for updating state.
+
 export default class SearchBar extends Component {
 
     //setting state

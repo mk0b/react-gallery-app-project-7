@@ -9,21 +9,20 @@ import SearchBar from './SearchBar';
 import CategoriesNav from './CategoriesNav';
 import Gallery from './Gallery';
 import NotFound from './NotFound';
-import { BrowserRouter, Route } from 'react-router-dom';
-//Where should I put the No results for the search?
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 export default class App extends Component {
   
-  constructor() {
+  constructor(props) {
     //binding this keyword to this class
-    super();
+    super(props);
     //setting state to make a place for the Flickr data to go
     this.state = {
       photos: [],
       loading: true
     }
   }
-
+  //TODO: use prevstate to make sure everything gets updated correctly when using state.
   //TODO: create a component did mount here?
 
   //method to search the Flickr API from the search form in SearchBar.js
@@ -49,12 +48,13 @@ export default class App extends Component {
   render() {
     console.log(this.state.photos);
     return (
+      <BrowserRouter>
         <div className="container">
           <SearchBar onSearch={this.search}/>
-          <CategoriesNav />
-          <Gallery data={this.state.photos} />
+          <CategoriesNav data={this.state.photos}/>
+          <Gallery />
         </div>
-
+      </BrowserRouter>
     );
   }
 
