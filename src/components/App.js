@@ -51,8 +51,8 @@ export default class App extends Component {
       <BrowserRouter>
         <div className="container">
           <SearchBar onSearch={this.search}/>
-          <CategoriesNav data={this.state.photos}/>
-          <Gallery />
+          <CategoriesNav />
+          <Gallery data={this.state.photos} />
         </div>
       </BrowserRouter>
     );

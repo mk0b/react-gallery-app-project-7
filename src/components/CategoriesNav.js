@@ -6,6 +6,8 @@ import horseData from '../data/horsesData';
 
 import Gallery from './Gallery';
 
+//Need to change App state from here and then it gets put into CategoriesNav same way with Gallery.
+
 const CategoriesNav = (props) => (
     <BrowserRouter>
         <nav className="main-nav">
@@ -15,7 +17,7 @@ const CategoriesNav = (props) => (
                 <li><NavLink to="/hedgehogs">#hedgehogs</NavLink></li>
             </ul>
 
-            <Route path="/horses" render={ () => <Gallery data={horseData} />} />
+            
         </nav>
     </BrowserRouter>
 );
