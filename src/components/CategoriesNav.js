@@ -13,11 +13,9 @@ const CategoriesNav = (props) => (
         <nav className="main-nav">
             <ul>
                 <li><NavLink to="/horses">#horses</NavLink></li>
-                <li><NavLink to="/code">#code</NavLink></li>
-                <li><NavLink to="/hedgehogs">#hedgehogs</NavLink></li>
+                <li><NavLink to="/cats">#cats</NavLink></li>
+                <li><NavLink to="/dogs">#dogs</NavLink></li>
             </ul>
-
-            
         </nav>
     </BrowserRouter>
 );

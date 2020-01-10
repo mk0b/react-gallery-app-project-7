@@ -12,14 +12,13 @@ const Gallery = (props) => {
     //store vairables
     const results = props.data;
     console.log(results);
-    //console.log('Match: ', props.match.params.search);
-    //const title = props.match.params.search;
+    console.log('Match: ', props.match.params.search);
+    const title = props.match.params.search;
     let photos;
 
     if (results.length > 0) {
         photos = results.map(photo => {
-            const url = `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_c.jpg`; 
-            console.log(url);
+            const url = `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_c.jpg`;
             return (
                 <Photo url={url} key={photo.id} />
             );
@@ -28,10 +27,9 @@ const Gallery = (props) => {
         photos = <NoSearchResults />
     }
     //TODO: Make a ternary if statement if a title prop exists add it if not leave out the h1
-    //{title}
     return (
         <div className="photo-container">
-            <h1> Gifs</h1>
+            <h1> {title} Gifs</h1>
             <ul>
                 {photos}
             </ul>

@@ -3,13 +3,14 @@ import React, { Component } from 'react';
 import '../css/index.css';
 import axios from 'axios';
 import apiInfo from '../config';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 
 //importing components
 import SearchBar from './SearchBar';
 import CategoriesNav from './CategoriesNav';
 import Gallery from './Gallery';
 import NotFound from './NotFound';
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+
 
 export default class App extends Component {
   
@@ -51,6 +52,7 @@ export default class App extends Component {
   //TODO: it will go like /search/searchContent - reference the gif search project/router
   //TODO: Reference home.js from router project and app then courses
   //TODO: Took this out: <Gallery data={this.state.photos} />
+  
   render() {
     console.log(this.state.photos);
     return (
@@ -60,7 +62,10 @@ export default class App extends Component {
           <CategoriesNav />
           
         <Switch>
-          <Route path="/search/:searchtext" render={ () => <Gallery data={this.state.photos} />} />
+          <Route exact path="/" render={ () => <Redirect to="/horses" />} />
+          <Route path="/search/:searchtext" render={ (props) => <Gallery {...props} data={this.state.photos} />} />
+          <Route path="/horses" render={ (props) => <Gallery {...props} data={this.state.photos} />} />
+          <Route component={NotFound} />
         </Switch>
         </div>
       </BrowserRouter>
