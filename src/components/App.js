@@ -24,7 +24,7 @@ export default class App extends Component {
       loading: true
     }
   }
-  
+
   //TODO: use prevstate to make sure everything gets updated correctly when using state.
 
   componentDidMount() {
@@ -57,6 +57,8 @@ export default class App extends Component {
   //TODO: Make a call for the different paths in methods up here and store it in an array and pass those through as data depnding on the route that is selected.
 
   //TODO: Fix the route if you search again after searching it adds a /search to it.
+
+  //TODO: Figure out how to handle this took it out for now: <Route exact path="/" render={ () => <Redirect to="/horses" />} />
   
   render() {
     console.log(this.state.photos);
@@ -67,9 +69,10 @@ export default class App extends Component {
           <CategoriesNav onClick={this.search} />
           
         <Switch>
-          <Route exact path="/" render={ () => <Redirect to="/horses" />} />
-          <Route path="/search/:searchtext" render={ (props) => <Gallery {...props} data={this.state.photos} />} />
+          <Route exact path="/search/:searchtext" render={ (props) => <Gallery {...props} data={this.state.photos} />} />
           <Route path="/horses" render={ (props) => <Gallery {...props} data={this.state.photos} />} />
+          <Route path="/cats" render={ (props) => <Gallery {...props} data={this.state.photos} />} />
+          <Route path="/dogs" render={ (props) => <Gallery {...props} data={this.state.photos} />} />
           <Route component={NotFound} />
         </Switch>
         </div>
