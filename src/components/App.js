@@ -12,6 +12,7 @@ import Gallery from './Gallery';
 import NotFound from './NotFound';
 
 
+
 export default class App extends Component {
   
   constructor(props) {
@@ -20,12 +21,18 @@ export default class App extends Component {
     //setting state to make a place for the Flickr data to go
     this.state = {
       photos: [],
-      horseData: [],
       loading: true
     }
   }
+  
   //TODO: use prevstate to make sure everything gets updated correctly when using state.
-  //TODO: create a component did mount here?
+
+  componentDidMount() {
+    
+  }
+
+  //make this call get triggered in CategoriesNav onlcick it will update the state and then
+  //use this.state.photos in the component rendering down below.
 
   //method to search the Flickr API from the search form in SearchBar.js
   //creating it as an arrow function to auto bind this keyword.
@@ -48,19 +55,16 @@ export default class App extends Component {
   }
 
   //TODO: Make a call for the different paths in methods up here and store it in an array and pass those through as data depnding on the route that is selected.
-  
-  //TODO: Set-up a route here for the custom search field that will be coming back
-  //TODO: it will go like /search/searchContent - reference the gif search project/router
-  //TODO: Reference home.js from router project and app then courses
-  //TODO: Took this out: <Gallery data={this.state.photos} />
 
+  //TODO: Fix the route if you search again after searching it adds a /search to it.
+  
   render() {
     console.log(this.state.photos);
     return (
       <BrowserRouter>
         <div className="container">
           <SearchBar onSearch={this.search} />
-          <CategoriesNav />
+          <CategoriesNav onClick={this.search} />
           
         <Switch>
           <Route exact path="/" render={ () => <Redirect to="/horses" />} />
