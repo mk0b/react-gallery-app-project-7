@@ -20,6 +20,7 @@ export default class App extends Component {
     //setting state to make a place for the Flickr data to go
     this.state = {
       photos: [],
+      horseData: [],
       loading: true
     }
   }
@@ -64,7 +65,7 @@ export default class App extends Component {
         <Switch>
           <Route exact path="/" render={ () => <Redirect to="/horses" />} />
           <Route path="/search/:searchtext" render={ (props) => <Gallery {...props} data={this.state.photos} />} />
-          <Route path="/horses" render={ (props) => <Gallery {...props} fetch={this.search} data={this.state.photos} />} />
+          <Route path="/horses" render={ (props) => <Gallery {...props} data={this.state.photos} />} />
           <Route component={NotFound} />
         </Switch>
         </div>
