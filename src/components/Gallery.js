@@ -6,23 +6,15 @@ import NoSearchResults from './NoSearchResults';
 
 //construct URLs for the Photo Source URLs from the data we get back: https://www.flickr.com/services/api/misc.urls.html
 //display the URL's to the <Photo /> component or if the array is empty display no results found.
-//TODO: Make a ternary statement to show the default page title or the dynamic page title.
 
 class Gallery extends Component {
-    
-    state = {
-        key: 0
-    }
+    //TODO: Might have to put an if path is not /search
+    //TODO: See if I can auto focus it to be on the horses page son page load so 
+    //it is less hacky and I can delete componentWillMount below.
 
     componentWillMount() {
-        console.log(this.props.location.pathname.replace('/', ''));
         let routeName = this.props.location.pathname.replace('/', '');
-        console.log(routeName);
-        //let path = `/${routeName}`;
-        //this.props.history.push(path);
         this.props.fetchData(routeName);
-        //this.forceUpdate();
-        this.setState({ key: Math.random() });
     }
 
     render() {
@@ -31,10 +23,8 @@ class Gallery extends Component {
         console.log(results);
         let photos;
         console.log('Match: ', this.props.match.params.searchtext);
-        const title = this.props.match.params.searchtext;
+        const title = this.props.query.charAt(0).toUpperCase() + this.props.query.slice(1);
         
-
-        //TODO: Make a bigger if statement here where they all say if results.length is greater than 0 AND props.match.url??
         if (results.length > 0) {
             photos = results.map(photo => {
                 const url = `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_c.jpg`;
@@ -48,7 +38,7 @@ class Gallery extends Component {
 
         return (
             <div className="photo-container">
-                <h1 className="gallery-h1">  {title} Gifs</h1>
+                <h1 className="gallery-h1">  {title} </h1>
                 <hr className="gallery-line" />
                 <ul>
                     {photos}
