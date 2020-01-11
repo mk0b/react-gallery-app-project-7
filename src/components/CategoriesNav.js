@@ -12,19 +12,14 @@ class CategoriesNav extends Component {
         //passing it down to Gallery in props.
     }
 
-    componentDidMount() {
-        //event.preventDefault();
-        this.setState({ isRefresh: true });
+/*     componentDidMount() {
         console.log(this.props.location.pathname.replace('/', ''));
         let routeName = this.props.location.pathname.replace('/', '');
         console.log(routeName);
-        let path = `/${routeName}`;
-        this.props.history.push(path);
+        //let path = `/${routeName}`;
+        //this.props.history.push(path);
         this.props.fetchData(routeName);
-        //this.refreshPage();
-        //this.shouldComponentUpdate();
-        //this.refresh();
-    }
+    } */
 
     
     render () {

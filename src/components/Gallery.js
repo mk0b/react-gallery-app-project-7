@@ -1,5 +1,6 @@
 //functional component
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import Photo from './Photo';
 import NoSearchResults from './NoSearchResults';
 
@@ -7,36 +8,54 @@ import NoSearchResults from './NoSearchResults';
 //display the URL's to the <Photo /> component or if the array is empty display no results found.
 //TODO: Make a ternary statement to show the default page title or the dynamic page title.
 
-const Gallery = (props) => {
-    //store vairables
-    const results = props.data;
-    console.log(results);
-    let photos;
-    console.log('Match: ', props.match.params.searchtext);
-    const title = props.match.params.searchtext;
-
-
-    //TODO: Make a bigger if statement here where they all say if results.length is greater than 0 AND props.match.url??
-    if (results.length > 0) {
-        photos = results.map(photo => {
-            const url = `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_c.jpg`;
-            return (
-                <Photo url={url} key={photo.id} />
-            );
-        });
-    } else {
-        photos = <NoSearchResults />
+class Gallery extends Component {
+    
+    state = {
+        key: 0
     }
 
-    return (
-        <div className="photo-container">
-            <h1 className="gallery-h1">  {title} Gifs</h1>
-            <hr className="gallery-line" />
-            <ul>
-                {photos}
-            </ul>
-        </div>
-    );
+    componentWillMount() {
+        console.log(this.props.location.pathname.replace('/', ''));
+        let routeName = this.props.location.pathname.replace('/', '');
+        console.log(routeName);
+        //let path = `/${routeName}`;
+        //this.props.history.push(path);
+        this.props.fetchData(routeName);
+        //this.forceUpdate();
+        this.setState({ key: Math.random() });
+    }
+
+    render() {
+        //store vairables
+        const results = this.props.data;
+        console.log(results);
+        let photos;
+        console.log('Match: ', this.props.match.params.searchtext);
+        const title = this.props.match.params.searchtext;
+        
+
+        //TODO: Make a bigger if statement here where they all say if results.length is greater than 0 AND props.match.url??
+        if (results.length > 0) {
+            photos = results.map(photo => {
+                const url = `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_c.jpg`;
+                return (
+                    <Photo url={url} key={photo.id} />
+                );
+            });
+        } else {
+            photos = <NoSearchResults />
+        }
+
+        return (
+            <div className="photo-container">
+                <h1 className="gallery-h1">  {title} Gifs</h1>
+                <hr className="gallery-line" />
+                <ul>
+                    {photos}
+                </ul>
+            </div>
+        );
+    }
 }
 
-export default Gallery;
+export default withRouter(Gallery);

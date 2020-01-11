@@ -12,12 +12,12 @@ import Gallery from './Gallery';
 import NotFound from './NotFound';
 
 
-
 export default class App extends Component {
   
   constructor(props) {
     //binding this keyword to this class
     super(props);
+    this.forceUpdateHandler = this.forceUpdateHandler.bind(this);
     //setting state to make a place for the Flickr data to go
     this.state = {
       photos: [],
@@ -32,6 +32,10 @@ export default class App extends Component {
 
   //method to search the Flickr API from the search form in SearchBar.js
   //creating it as an arrow function to auto bind this keyword.
+  forceUpdateHandler() {
+    this.forceUpdate();
+  }
+
   search = (query) => {
     //storing the call in a variable to make it cleaner
     const apiSearchCall = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiInfo.key}&tags=${query}&per_page=24&format=json&nojsoncallback=1`;
@@ -54,10 +58,12 @@ export default class App extends Component {
 
   //TODO: Fix the route if you search again after searching it adds a /search to it.
 
-  //TODO: Figure out how to handle this took it out for now: <Route exact path="/" render={ () => <Redirect to="/horses" />} />
+  //TODO: Figure out how to handle this took it out for now: 
   //onClick={this.clicked.bind(this)}
   //onClick={this.search}
-
+  //          <Route path="/horses" render={ (props) => <Gallery {...props} data={this.state.photos} />} />
+ // <Route path="/cats" render={ (props) => <Gallery {...props} data={this.state.photos} />} />
+  //<Route path="/dogs" render={ (props) => <Gallery {...props} data={this.state.photos} />} />
 
   render() {
     console.log(this.state.photos);
@@ -68,10 +74,9 @@ export default class App extends Component {
           <CategoriesNav fetchData={this.search} />
           
         <Switch>
+          <Route exact path="/" render={ () => <Redirect to="/horses" />} />
           <Route exact path="/search/:searchtext" render={ (props) => <Gallery {...props} data={this.state.photos} />} />
-          <Route path="/horses" render={ (props) => <Gallery {...props} data={this.state.photos} />} />
-          <Route path="/cats" render={ (props) => <Gallery {...props} data={this.state.photos} />} />
-          <Route path="/dogs" render={ (props) => <Gallery {...props} data={this.state.photos} />} />
+          <Route path="/(horses|cats|dogs)" render={ (props) => <Gallery {...props} data={this.state.photos} fetchData={this.search} />} />
           <Route component={NotFound} />
         </Switch>
         </div>
@@ -98,11 +103,5 @@ export default class App extends Component {
 // - Search
 // - Photo Container
 
-//TODO: Fetch the Flickr Data
-//TODO: Set up routes.
-//TODO: App should display at least 3 default topic links that return a list of photos matching some criteria.
-//TODO: Display the data. Make sure to include a key so there are no warnings.
-//TODO: No more than 24 images displaying.
 
-//TODO: Exceeds if no matches are found in search, include a message to tell the user there are no matches.
 //TODO: Exceeds - Add a loading indicater when pages are loading/data is fetching.
