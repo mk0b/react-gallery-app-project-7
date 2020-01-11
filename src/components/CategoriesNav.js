@@ -8,7 +8,8 @@ import { NavLink, BrowserRouter, withRouter } from 'react-router-dom';
 class CategoriesNav extends Component {
 
     state =  {
-
+        //TODO: Try catching the routeName in state - passing it up to app state and then
+        //passing it down to Gallery in props.
     }
 
     componentDidMount() {
