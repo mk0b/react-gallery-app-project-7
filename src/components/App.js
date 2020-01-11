@@ -27,10 +27,6 @@ export default class App extends Component {
 
   //TODO: use prevstate to make sure everything gets updated correctly when using state.
 
-  componentDidMount() {
-    
-  }
-
   //make this call get triggered in CategoriesNav onlcick it will update the state and then
   //use this.state.photos in the component rendering down below.
 
@@ -59,14 +55,17 @@ export default class App extends Component {
   //TODO: Fix the route if you search again after searching it adds a /search to it.
 
   //TODO: Figure out how to handle this took it out for now: <Route exact path="/" render={ () => <Redirect to="/horses" />} />
-  
+  //onClick={this.clicked.bind(this)}
+  //onClick={this.search}
+
+
   render() {
     console.log(this.state.photos);
     return (
       <BrowserRouter>
         <div className="container">
           <SearchBar onSearch={this.search} />
-          <CategoriesNav onClick={this.search} />
+          <CategoriesNav fetchData={this.search} />
           
         <Switch>
           <Route exact path="/search/:searchtext" render={ (props) => <Gallery {...props} data={this.state.photos} />} />

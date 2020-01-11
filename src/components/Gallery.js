@@ -1,5 +1,5 @@
 //functional component
-import React from 'react';
+import React, { Component } from 'react';
 import Photo from './Photo';
 import NoSearchResults from './NoSearchResults';
 
@@ -14,6 +14,7 @@ const Gallery = (props) => {
     let photos;
     console.log('Match: ', props.match.params.searchtext);
     const title = props.match.params.searchtext;
+
 
     //TODO: Make a bigger if statement here where they all say if results.length is greater than 0 AND props.match.url??
     if (results.length > 0) {
