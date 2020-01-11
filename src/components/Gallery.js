@@ -37,7 +37,7 @@ class Gallery extends Component {
             <div className="photo-container">
                 {
                     (this.props.loading)
-                    ? <p>Loading...</p>
+                    ? <p className="loading">Loading...</p>
                     :                
                     <Fragment>
                         <h1 className="gallery-h1">  {title} </h1>

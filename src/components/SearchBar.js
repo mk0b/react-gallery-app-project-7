@@ -18,11 +18,10 @@ class SearchBar extends Component {
     onSubmit = event => {
         event.preventDefault();
         let searchText = this.search.value;
-        let path = `search/${searchText}`;
+        let path = `/search/${searchText}`;
         this.props.history.push(path);
         this.props.onSearch(this.state.searchContent);
         event.currentTarget.reset();
-        
     }
 
     render() {

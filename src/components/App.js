@@ -19,7 +19,7 @@ export default class App extends Component {
     //setting state to make a place for the Flickr data to go
     this.state = {
       photos: [],
-      query: '',
+      queryContent: '',
       loading: true
     }
   }
@@ -36,7 +36,7 @@ export default class App extends Component {
       .then(response => {
         this.setState({
           photos: response.data.photos.photo,
-          query: query,
+          queryContent: query,
           loading: false
         });
       })
@@ -54,8 +54,8 @@ export default class App extends Component {
           <CategoriesNav fetchData={this.search} />
           <Switch>
             <Route exact path="/" render={ () => <Redirect to="/horses" />} />
-            <Route exact path="/search/:searchtext" render={ (props) => <Gallery {...props} data={this.state.photos} query={this.state.query} loading={this.state.loading} fetchData={this.search} />} />
-            <Route path="/(horses|cats|dogs)" render={ (props) => <Gallery {...props} data={this.state.photos} query={this.state.query} loading={this.state.loading} fetchData={this.search} />} />
+            <Route exact path="/search/:searchtext" render={ (props) => <Gallery {...props} data={this.state.photos} query={this.state.queryContent} loading={this.state.loading} fetchData={this.search} />} />
+            <Route path="/(horses|cats|dogs)" render={ (props) => <Gallery {...props} data={this.state.photos} query={this.state.queryContent} loading={this.state.loading} fetchData={this.search} />} />
             <Route component={NotFound} />
           </Switch>
         </div>
