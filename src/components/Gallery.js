@@ -1,5 +1,5 @@
 //functional component
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { withRouter } from 'react-router-dom';
 import Photo from './Photo';
 import NoSearchResults from './NoSearchResults';
@@ -8,9 +8,6 @@ import NoSearchResults from './NoSearchResults';
 //display the URL's to the <Photo /> component or if the array is empty display no results found.
 
 class Gallery extends Component {
-    //TODO: Might have to put an if path is not /search
-    //TODO: See if I can auto focus it to be on the horses page son page load so 
-    //it is less hacky and I can delete componentWillMount below.
 
     componentWillMount() {
         let routeName = this.props.location.pathname.replace('/', '');
@@ -38,11 +35,18 @@ class Gallery extends Component {
 
         return (
             <div className="photo-container">
-                <h1 className="gallery-h1">  {title} </h1>
-                <hr className="gallery-line" />
-                <ul>
-                    {photos}
-                </ul>
+                {
+                    (this.props.loading)
+                    ? <p>Loading...</p>
+                    :                
+                    <Fragment>
+                        <h1 className="gallery-h1">  {title} </h1>
+                        <hr className="gallery-line" />
+                        <ul>
+                            {photos}
+                        </ul>
+                    </Fragment>
+                }
             </div>
         );
     }

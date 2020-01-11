@@ -52,13 +52,12 @@ export default class App extends Component {
         <div className="container">
           <SearchBar onSearch={this.search} />
           <CategoriesNav fetchData={this.search} />
-          
-        <Switch>
-          <Route exact path="/" render={ () => <Redirect to="/horses" />} />
-          <Route exact path="/search/:searchtext" render={ (props) => <Gallery {...props} data={this.state.photos} query={this.state.query} fetchData={this.search} />} />
-          <Route path="/(horses|cats|dogs)" render={ (props) => <Gallery {...props} data={this.state.photos} query={this.state.query} fetchData={this.search} />} />
-          <Route component={NotFound} />
-        </Switch>
+          <Switch>
+            <Route exact path="/" render={ () => <Redirect to="/horses" />} />
+            <Route exact path="/search/:searchtext" render={ (props) => <Gallery {...props} data={this.state.photos} query={this.state.query} loading={this.state.loading} fetchData={this.search} />} />
+            <Route path="/(horses|cats|dogs)" render={ (props) => <Gallery {...props} data={this.state.photos} query={this.state.query} loading={this.state.loading} fetchData={this.search} />} />
+            <Route component={NotFound} />
+          </Switch>
         </div>
       </BrowserRouter>
     );
