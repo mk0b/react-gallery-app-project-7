@@ -9,7 +9,7 @@ import NoSearchResults from './NoSearchResults';
 
 class Gallery extends Component {
 
-    componentWillMount() {
+    componentDidMount() {
         let routeName = this.props.location.pathname.replace('/', '');
         this.props.fetchData(routeName);
     }
@@ -17,11 +17,11 @@ class Gallery extends Component {
     render() {
         //store vairables
         const results = this.props.data;
-        console.log(results);
         let photos;
-        console.log('Match: ', this.props.match.params.searchtext);
+        //grab the search query and then make it look prettier for the page
         const title = this.props.query.charAt(0).toUpperCase() + this.props.query.slice(1);
         
+        //if no results show the NoSearchResults component.
         if (results.length > 0) {
             photos = results.map(photo => {
                 const url = `https://farm${photo.farm}.staticflickr.com/${photo.server}/${photo.id}_${photo.secret}_c.jpg`;
@@ -33,6 +33,7 @@ class Gallery extends Component {
             photos = <NoSearchResults />
         }
 
+        //show loading when loading otherwise show the photos. Loading happens quickly though, tough to see.
         return (
             <div className="photo-container">
                 {

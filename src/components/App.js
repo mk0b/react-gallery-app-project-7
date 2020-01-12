@@ -29,9 +29,8 @@ export default class App extends Component {
   search = (query) => {
     //storing the call in a variable to make it cleaner
     const apiSearchCall = `https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiInfo.key}&tags=${query}&per_page=24&format=json&nojsoncallback=1`;
-    console.log('API Call: ', apiSearchCall);
 
-    //initial call
+    //api call
     axios.get(apiSearchCall)
       .then(response => {
         this.setState({
@@ -46,7 +45,6 @@ export default class App extends Component {
   }
 
   render() {
-    console.log(this.state.photos);
     return (
       <BrowserRouter>
         <div className="container">
@@ -69,9 +67,3 @@ export default class App extends Component {
 //TODO: Fill out Read.me file. LOL…please don’t forget to update your README with how to setup the config.js file that way if someone whether it is here within the TechDegree or a future employer goes to install the app they know how it should be configured to run.
 //TODO: Clean up comments
 //TODO: Remove tests.
-//TODO: Cleanup any unused assets.
-
-//TODO: Build Components - Use the mockups as a general guide to create components.
-
-//TODO: Exceeds - Add a loading indicater when pages are loading/data is fetching.
-//TODO: Fix the route if you search again after searching it adds a /search to it.

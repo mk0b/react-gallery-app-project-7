@@ -123,3 +123,14 @@ input {
     width: 100px;
   }
 }
+
+.loading {
+  color: #094717;
+  font-weight: bold;
+  font-size: 40px;
+  
+}
+
+.gallery-line {
+  border-top: 2px dashed lightgray;
+}

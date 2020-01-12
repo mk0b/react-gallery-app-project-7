@@ -12,9 +12,11 @@ class SearchBar extends Component {
     //method for updating the searchContent state when someone types.
     onSearchChange = event => {
         this.setState({ searchContent: event.target.value });
-        console.log(event.value);
     }
+    
     //method for what to do on submit
+    //basically grab the search value create a route path with it
+    //push that route to be the current route
     onSubmit = event => {
         event.preventDefault();
         let searchText = this.search.value;
@@ -24,6 +26,7 @@ class SearchBar extends Component {
         event.currentTarget.reset();
     }
 
+    //had to bind this for my setup to work.
     render() {
         return (
             <form className="search-form" onSubmit={this.onSubmit.bind(this)}>
