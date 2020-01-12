@@ -42,13 +42,16 @@ export default class App extends Component {
       .catch(error => {
         console.log('Error fetching and parsing data: ', error);
       });
+
+    //resetting loading to true so that loading... shows on any API call load.
+    this.setState({loading: true});
   }
 
   render() {
     return (
       <BrowserRouter>
         <div className="container">
-          <SearchBar onSearch={this.search} />
+          <SearchBar onSearch={this.search} loading={this.state.loading} />
           <CategoriesNav fetchData={this.search} />
           <Switch>
             <Route exact path="/" render={ () => <Redirect to="/horses" />} />
