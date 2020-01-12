@@ -1,5 +1,30 @@
 
+## React Gallery App Project 7 Teamtreehouse
 
+Project Desc: A photo gallery App that fetches photos from the Flickr API.
+
+Project Features:
+
+- Ability to search the Flickr Photo API.
+- Ability to click the existing navigation to see horses, cats, and dogs Flickr API photos.
+
+Styling Changes
+
+- I added only two CSS styles to try and make Loading... easier to see and to style the hr line I put in between the title and the photo gallery.
+
+Need to know:
+
+- To run this project you need to run npm install in the directory after you download the files.
+- You also need to configure a config.js in the data directory with the following:
+
+//storing Flickr API key for this project.
+
+const apiInfo = {
+    key: 'b1dd25626fe9946ed7154d637074f7e0',
+    secret: 'a95f02e5293839ca'
+};
+
+export default apiInfo;
 
 
 

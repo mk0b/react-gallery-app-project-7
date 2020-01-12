@@ -61,9 +61,3 @@ export default class App extends Component {
     );
   }
 }
-
-//Putting my TODO's here
-//TODO: Test!
-//TODO: Fill out Read.me file. LOL…please don’t forget to update your README with how to setup the config.js file that way if someone whether it is here within the TechDegree or a future employer goes to install the app they know how it should be configured to run.
-//TODO: Clean up comments
-//TODO: Remove tests.
