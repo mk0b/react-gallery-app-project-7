@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import '../css/index.css';
 import axios from 'axios';
 import apiInfo from '../config';
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { HashRouter, Route, Switch, Redirect } from 'react-router-dom';
 
 //importing components
 import SearchBar from './SearchBar';
@@ -49,7 +49,7 @@ export default class App extends Component {
 
   render() {
     return (
-      <BrowserRouter>
+      <HashRouter>
         <div className="container">
           <SearchBar onSearch={this.search} loading={this.state.loading} />
           <CategoriesNav fetchData={this.search} />
@@ -60,7 +60,7 @@ export default class App extends Component {
             <Route component={NotFound} />
           </Switch>
         </div>
-      </BrowserRouter>
+      </HashRouter>
     );
   }
 }
